@@ -49,21 +49,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   padding: 25px;
   transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   flex-direction: column;
   user-select: none;
-}
-
-.orb:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 50px rgba(255, 255, 255, 0.4);
-}
-
-.orb:active {
-  transform: scale(0.98);
 }
 
 /* Normal Mode Orb */
@@ -72,18 +62,10 @@ body {
   box-shadow: 0 0 40px rgba(58, 108, 255, 0.5), inset -30px -30px 60px rgba(0, 0, 0, 0.3);
 }
 
-.orb.normal:hover {
-  box-shadow: 0 0 60px rgba(58, 108, 255, 0.7), inset -30px -30px 60px rgba(0, 0, 0, 0.3);
-}
-
 /* Dark Mode Orb */
 .orb.dark {
   background: radial-gradient(circle at 30% 30%, #8b0000, #1a0000);
   box-shadow: 0 0 40px rgba(139, 0, 0, 0.5), inset -30px -30px 60px rgba(0, 0, 0, 0.5);
-}
-
-.orb.dark:hover {
-  box-shadow: 0 0 60px rgba(139, 0, 0, 0.7), inset -30px -30px 60px rgba(0, 0, 0, 0.5);
 }
 
 #answer {
