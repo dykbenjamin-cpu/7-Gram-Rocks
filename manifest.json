@@ -1,0 +1,48 @@
+{
+  "name": "Why Is She Mad? - The Orb",
+  "short_name": "Why Is She Mad?",
+  "description": "A mystical orb that answers your relationship questions with ambiguous wisdom.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#1a1a2e",
+  "background_color": "#1a1a2e",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%231a1a2e' width='192' height='192'/><circle cx='96' cy='96' r='85' fill='%233a6cff'/><circle cx='70' cy='70' r='20' fill='%235fa3ff' opacity='0.6'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%231a1a2e' width='512' height='512'/><circle cx='256' cy='256' r='230' fill='%233a6cff'/><circle cx='180' cy='180' r='50' fill='%235fa3ff' opacity='0.6'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%231a1a2e' width='540' height='720'/><circle cx='270' cy='280' r='120' fill='%233a6cff'/><rect fill='rgba(255,255,255,0.1)' x='50' y='500' width='440' height='150' rx='20'/></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["lifestyle", "entertainment"],
+  "shortcuts": [
+    {
+      "name": "Ask the Orb",
+      "short_name": "Ask",
+      "description": "Quickly consult the mystical orb",
+      "url": "index.html",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><circle cx='96' cy='96' r='90' fill='%233a6cff'/></svg>",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
