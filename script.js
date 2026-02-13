@@ -297,7 +297,6 @@ const darkResponses = [
 ];
 
 let lastAnswer = "";
-let answerLocked = false;
 
 // =======================
 // MODE SWITCHING
@@ -316,11 +315,6 @@ function updateOrbMode() {
 // =======================
 
 function shakeOrb() {
-  // Prevent multiple answers for the same question
-  if (answerLocked) {
-    return;
-  }
-
   updateOrbMode();
 
   const orb = document.getElementById("orb");
@@ -335,9 +329,6 @@ function shakeOrb() {
   // Get random response
   const responses = darkMode ? darkResponses : normalResponses;
   lastAnswer = responses[Math.floor(Math.random() * responses.length)];
-
-  // Lock the answer for this question
-  answerLocked = true;
 
   // Dramatic delay
   setTimeout(() => {
@@ -380,13 +371,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Set default mode on load
   updateOrbMode();
-  
-  // Reset answer lock when user types a new question
-  document
-    .getElementById("question")
-    .addEventListener("input", () => {
-      answerLocked = false;
-    });
   
   // Allow Enter key to shake the orb
   document
