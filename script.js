@@ -299,6 +299,36 @@ const darkResponses = [
 let lastAnswer = "";
 
 // =======================
+// GET RANDOM RESPONSES
+// =======================
+
+function getRandomResponse() {
+  const darkMode = document.getElementById("darkModeToggle").checked;
+  const primaryResponses = darkMode ? darkResponses : normalResponses;
+  const secondaryResponses = darkMode ? normalResponses : darkResponses;
+  
+  // 70% chance: single response
+  // 25% chance: combine 2 responses
+  // 5% chance: mix in opposite mode response for chaos
+  const randomChance = Math.random();
+  
+  if (randomChance < 0.70) {
+    // Single response
+    return primaryResponses[Math.floor(Math.random() * primaryResponses.length)];
+  } else if (randomChance < 0.95) {
+    // Combine 2 responses
+    const resp1 = primaryResponses[Math.floor(Math.random() * primaryResponses.length)];
+    const resp2 = primaryResponses[Math.floor(Math.random() * primaryResponses.length)];
+    return `${resp1}... ${resp2}`;
+  } else {
+    // Mix in opposite mode for chaos
+    const resp1 = primaryResponses[Math.floor(Math.random() * primaryResponses.length)];
+    const resp2 = secondaryResponses[Math.floor(Math.random() * secondaryResponses.length)];
+    return `${resp1}... ${resp2}`;
+  }
+}
+
+// =======================
 // MODE SWITCHING
 // =======================
 
@@ -319,21 +349,20 @@ function shakeOrb() {
 
   const orb = document.getElementById("orb");
   const answerEl = document.getElementById("answer");
-  const darkMode = document.getElementById("darkModeToggle").checked;
 
   // Restart shake animation
   orb.classList.remove("shake");
   void orb.offsetWidth;
   orb.classList.add("shake");
 
-  // Get random response
-  const responses = darkMode ? darkResponses : normalResponses;
-  lastAnswer = responses[Math.floor(Math.random() * responses.length)];
+  // Get randomized response
+  lastAnswer = getRandomResponse();
 
-  // Dramatic delay
+  // Random delay between 200-500ms for variation
+  const delay = 200 + Math.random() * 300;
   setTimeout(() => {
     answerEl.innerText = lastAnswer;
-  }, 300);
+  }, delay);
 }
 
 // =======================
