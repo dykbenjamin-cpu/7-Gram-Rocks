@@ -1,4 +1,4 @@
-const CACHE_NAME = 'why-is-she-mad-v3';
+const CACHE_NAME = 'ask-me-a-question-v1';
 const urlsToCache = [
   'index.html',
   'style.css',

@@ -1,4 +1,4 @@
-# Why Is She Mad? - iOS App Setup
+# Ask Me A Question - iOS App Setup
 
 This is now a Progressive Web App (PWA) that can be installed on iOS and other devices!
 
@@ -22,7 +22,7 @@ This is now a Progressive Web App (PWA) that can be installed on iOS and other d
 - **Standalone Mode** - Runs like a native app, fullscreen
 - **Home Screen Icon** - Custom app icon and splash screen
 - **Share Functionality** - Share the orb's answers with friends
-- **Smart Responses** - The orb analyzes your questions for relevant answers
+- **Smart Responses** - The orb provides randomized answers
 
 ## How to Deploy
 
