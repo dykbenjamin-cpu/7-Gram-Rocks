@@ -9,7 +9,7 @@
 body {
   font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
   min-height: 100vh;
-  background: radial-gradient(circle at 20% 10%, #2c2e5e 0%, #16192f 40%, #0a0d1c 100%);
+  background: radial-gradient(circle at 30% 10%, #2a335f 0%, #14182e 45%, #070910 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +20,38 @@ body {
   position: relative;
 }
 
+.sparkle-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.35) 0.5px, transparent 2px),
+    radial-gradient(circle at 80% 20%, rgba(180, 220, 255, 0.4) 0.5px, transparent 2px),
+    radial-gradient(circle at 40% 70%, rgba(255, 200, 255, 0.28) 0.5px, transparent 2px),
+    radial-gradient(circle at 70% 80%, rgba(200, 230, 255, 0.25) 0.5px, transparent 2px);
+  opacity: 0.5;
+  animation: twinkle 6s ease-in-out infinite;
+}
+
+.sparkle-field::before,
+.sparkle-field::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 60%, rgba(255, 255, 255, 0.4) 0.6px, transparent 2px),
+    radial-gradient(circle at 55% 25%, rgba(180, 220, 255, 0.35) 0.6px, transparent 2px),
+    radial-gradient(circle at 85% 55%, rgba(200, 230, 255, 0.25) 0.6px, transparent 2px);
+  opacity: 0.5;
+  animation: twinkle 8s ease-in-out infinite;
+}
+
+.sparkle-field::after {
+  animation-duration: 10s;
+  opacity: 0.35;
+}
+
 body::before,
 body::after {
   content: '';
@@ -27,9 +59,9 @@ body::after {
   inset: -20% -10% auto -10%;
   height: 70%;
   background:
-    radial-gradient(circle at 30% 40%, rgba(102, 140, 255, 0.25), transparent 55%),
-    radial-gradient(circle at 70% 20%, rgba(202, 140, 255, 0.18), transparent 60%),
-    radial-gradient(circle at 50% 80%, rgba(90, 220, 255, 0.12), transparent 55%);
+    radial-gradient(circle at 30% 40%, rgba(140, 190, 255, 0.25), transparent 55%),
+    radial-gradient(circle at 70% 20%, rgba(170, 120, 255, 0.18), transparent 60%),
+    radial-gradient(circle at 50% 80%, rgba(160, 220, 255, 0.12), transparent 55%);
   filter: blur(10px);
   pointer-events: none;
   z-index: 0;
@@ -104,31 +136,37 @@ body::after {
 
 /* Normal Mode Orb */
 .orb.normal {
-  background: radial-gradient(circle at 30% 25%, #8cb2ff 0%, #446bff 35%, #0c1b3a 70%, #050816 100%);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.75) 0%, rgba(190, 220, 255, 0.25) 18%, rgba(110, 160, 255, 0.15) 40%, rgba(18, 32, 80, 0.65) 70%, rgba(6, 10, 20, 0.9) 100%),
+    radial-gradient(circle at 70% 70%, rgba(150, 210, 255, 0.25), rgba(30, 60, 120, 0.7));
   box-shadow:
-    0 0 35px rgba(98, 140, 255, 0.6),
-    0 0 80px rgba(120, 180, 255, 0.25),
-    inset -30px -40px 70px rgba(0, 0, 0, 0.4);
+    0 0 40px rgba(160, 210, 255, 0.4),
+    0 0 90px rgba(110, 160, 255, 0.35),
+    inset -40px -50px 90px rgba(0, 0, 0, 0.45),
+    inset 20px 20px 50px rgba(255, 255, 255, 0.08);
 }
 
 /* Dark Mode Orb */
 .orb.dark {
-  background: radial-gradient(circle at 30% 25%, #ff6a6a 0%, #9b1b2d 40%, #2a060a 70%, #0a0203 100%);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.65) 0%, rgba(255, 170, 190, 0.25) 18%, rgba(160, 60, 80, 0.2) 45%, rgba(50, 10, 18, 0.75) 72%, rgba(10, 2, 4, 0.95) 100%),
+    radial-gradient(circle at 70% 70%, rgba(255, 140, 150, 0.25), rgba(80, 18, 28, 0.7));
   box-shadow:
-    0 0 35px rgba(255, 90, 90, 0.5),
-    0 0 80px rgba(255, 80, 80, 0.2),
-    inset -30px -40px 70px rgba(0, 0, 0, 0.55);
+    0 0 38px rgba(255, 110, 130, 0.4),
+    0 0 85px rgba(210, 80, 110, 0.25),
+    inset -40px -50px 90px rgba(0, 0, 0, 0.6),
+    inset 20px 20px 50px rgba(255, 255, 255, 0.06);
 }
 
 .orb::before {
   content: '';
   position: absolute;
-  inset: 12% 16% 48% 20%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  inset: 8% 18% 50% 18%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
   border-radius: 50%;
   transform: rotate(-12deg);
   filter: blur(2px);
-  opacity: 0.65;
+  opacity: 0.75;
 }
 
 .orb::after {
@@ -136,8 +174,46 @@ body::after {
   position: absolute;
   inset: 8%;
   border-radius: 50%;
-  background: radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 55%);
+  background:
+    radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 55%),
+    radial-gradient(circle at 50% 50%, rgba(160, 220, 255, 0.2), rgba(160, 220, 255, 0) 60%);
   animation: glowPulse 6s ease-in-out infinite;
+}
+
+.orb .mist {
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 55%),
+    radial-gradient(circle at 70% 60%, rgba(180, 220, 255, 0.18), rgba(180, 220, 255, 0) 60%);
+  filter: blur(6px);
+  opacity: 0.8;
+  animation: mistSwirl 7s ease-in-out infinite;
+  z-index: 1;
+}
+
+.orb .rune-ring {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0.45) 0deg 2deg,
+    transparent 2deg 12deg,
+    rgba(200, 230, 255, 0.35) 12deg 14deg,
+    transparent 14deg 26deg,
+    rgba(255, 255, 255, 0.4) 26deg 28deg,
+    transparent 28deg 38deg,
+    rgba(200, 220, 255, 0.3) 38deg 40deg,
+    transparent 40deg 54deg
+  );
+  mask: radial-gradient(circle, transparent 62%, #000 64%, #000 70%, transparent 72%);
+  -webkit-mask: radial-gradient(circle, transparent 62%, #000 64%, #000 70%, transparent 72%);
+  filter: drop-shadow(0 0 6px rgba(160, 210, 255, 0.4));
+  opacity: 0.6;
+  animation: slowSpin 18s linear infinite;
+  z-index: 1;
 }
 
 #answer {
@@ -179,6 +255,35 @@ body::after {
   50% {
     opacity: 0.9;
     transform: scale(1.03);
+  }
+}
+
+@keyframes mistSwirl {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: rotate(6deg) scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes slowSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
