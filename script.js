@@ -188,11 +188,11 @@ function shareResult() {
     return;
   }
 
-  const shareText = `🎱 Ask Me a Question\n\n"${lastAnswer}"`;}
+  const shareText = `🎱 Ask Me A Question\n\n"${lastAnswer}"`;
 
   if (navigator.share) {
     navigator.share({
-      title: "Ask Me a Question",
+      title: "Ask Me A Question",
       text: shareText,
     }).catch(() => {});
   } else {
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Allow Enter key to shake the orb
   document
     .getElementById("question")
-    .addEventListener("keypress", (e) => {
+    .addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         shakeOrb();
       }
