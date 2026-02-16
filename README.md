@@ -1,4 +1,4 @@
-# Ask Me A Question? - iOS App Setup
+# Why Is She Mad? - iOS App Setup
 
 This is now a Progressive Web App (PWA) that can be installed on iOS and other devices!
 
@@ -67,4 +67,3 @@ This is now a Progressive Web App (PWA) that can be installed on iOS and other d
 - Normal Mode provides ambiguous responses
 
 Enjoy the orb! 🎱
-
