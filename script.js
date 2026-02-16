@@ -209,9 +209,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const answerEl = document.getElementById("answer");
   const darkModeToggle = document.getElementById("darkModeToggle");
   const questionInput = document.getElementById("question");
+  const questionForm = document.getElementById("questionForm");
   const getIsDarkMode = () => darkModeToggle.checked;
 
   const applyMode = () => updateOrbMode(orb, getIsDarkMode());
+  const triggerShake = () => shakeOrb(orb, answerEl, getIsDarkMode());
 
   darkModeToggle.addEventListener("change", applyMode);
 
@@ -219,10 +221,15 @@ document.addEventListener("DOMContentLoaded", () => {
   applyMode();
 
   // Allow Enter key to shake the orb
+  questionForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    triggerShake();
+  });
+
   questionInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      shakeOrb(orb, answerEl, getIsDarkMode());
+      triggerShake();
     }
   });
 });
