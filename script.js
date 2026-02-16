@@ -225,11 +225,4 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     triggerShake();
   });
-
-  questionInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      triggerShake();
-    }
-  });
 });
