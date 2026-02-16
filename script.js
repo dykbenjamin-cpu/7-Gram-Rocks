@@ -2,7 +2,10 @@
 // RESPONSES
 // =======================
 
-const normalResponses = [
+const APP_TITLE = "Ask Me A Question";
+
+const RESPONSES = {
+  normal: [
   "The answer lies in silence.",
   "Neither here nor there.",
   "The truth lies between.",
@@ -54,9 +57,8 @@ const normalResponses = [
   "The truth wears many faces.",
   "As above, so below.",
   "The answer breathes with you."
-];
-
-const darkResponses = [
+  ],
+  dark: [
   "The void speaks in riddles.",
   "Chaos whispers its secrets.",
   "Nothing is as it seems.",
@@ -107,7 +109,8 @@ const darkResponses = [
   "What you built crumbles.",
   "The answer dwells in shadows.",
   "Your fate is already written."
-];
+  ]
+};
 
 let lastAnswer = "";
 
@@ -115,11 +118,12 @@ let lastAnswer = "";
 // GET RANDOM RESPONSES
 // =======================
 
-function getRandomResponse() {
-  const darkMode = document.getElementById("darkModeToggle").checked;
-  const primaryResponses = darkMode ? darkResponses : normalResponses;
-  const secondaryResponses = darkMode ? normalResponses : darkResponses;
-  
+const pickRandom = (list) => list[Math.floor(Math.random() * list.length)];
+
+function getRandomResponse(isDarkMode) {
+  const primaryResponses = isDarkMode ? RESPONSES.dark : RESPONSES.normal;
+  const secondaryResponses = isDarkMode ? RESPONSES.normal : RESPONSES.dark;
+
   // 70% chance: single response
   // 25% chance: combine 2 responses
   // 5% chance: mix in opposite mode response for chaos
@@ -127,16 +131,16 @@ function getRandomResponse() {
   
   if (randomChance < 0.70) {
     // Single response
-    return primaryResponses[Math.floor(Math.random() * primaryResponses.length)];
+    return pickRandom(primaryResponses);
   } else if (randomChance < 0.95) {
     // Combine 2 responses
-    const resp1 = primaryResponses[Math.floor(Math.random() * primaryResponses.length)];
-    const resp2 = primaryResponses[Math.floor(Math.random() * primaryResponses.length)];
+    const resp1 = pickRandom(primaryResponses);
+    const resp2 = pickRandom(primaryResponses);
     return `${resp1}... ${resp2}`;
   } else {
     // Mix in opposite mode for chaos
-    const resp1 = primaryResponses[Math.floor(Math.random() * primaryResponses.length)];
-    const resp2 = secondaryResponses[Math.floor(Math.random() * secondaryResponses.length)];
+    const resp1 = pickRandom(primaryResponses);
+    const resp2 = pickRandom(secondaryResponses);
     return `${resp1}... ${resp2}`;
   }
 }
@@ -145,23 +149,17 @@ function getRandomResponse() {
 // MODE SWITCHING
 // =======================
 
-function updateOrbMode() {
-  const orb = document.getElementById("orb");
-  const darkMode = document.getElementById("darkModeToggle").checked;
-
+function updateOrbMode(orb, isDarkMode) {
   orb.classList.remove("normal", "dark");
-  orb.classList.add(darkMode ? "dark" : "normal");
+  orb.classList.add(isDarkMode ? "dark" : "normal");
 }
 
 // =======================
 // MAIN SHAKE FUNCTION
 // =======================
 
-function shakeOrb() {
-  updateOrbMode();
-
-  const orb = document.getElementById("orb");
-  const answerEl = document.getElementById("answer");
+function shakeOrb(orb, answerEl, isDarkMode) {
+  updateOrbMode(orb, isDarkMode);
 
   // Restart shake animation
   orb.classList.remove("shake");
@@ -169,12 +167,12 @@ function shakeOrb() {
   orb.classList.add("shake");
 
   // Get randomized response
-  lastAnswer = getRandomResponse();
+  lastAnswer = getRandomResponse(isDarkMode);
 
   // Random delay between 200-500ms for variation
   const delay = 200 + Math.random() * 300;
   setTimeout(() => {
-    answerEl.innerText = lastAnswer;
+    answerEl.textContent = lastAnswer;
   }, delay);
 }
 
@@ -188,11 +186,11 @@ function shareResult() {
     return;
   }
 
-  const shareText = `🎱 Ask Me A Question\n\n"${lastAnswer}"`;
+  const shareText = `🎱 ${APP_TITLE}\n\n"${lastAnswer}"`;
 
   if (navigator.share) {
     navigator.share({
-      title: "Ask Me A Question",
+      title: APP_TITLE,
       text: shareText,
     }).catch(() => {});
   } else {
@@ -207,19 +205,24 @@ function shareResult() {
 // =======================
 
 document.addEventListener("DOMContentLoaded", () => {
-  document
-    .getElementById("darkModeToggle")
-    .addEventListener("change", updateOrbMode);
+  const orb = document.getElementById("orb");
+  const answerEl = document.getElementById("answer");
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  const questionInput = document.getElementById("question");
+  const getIsDarkMode = () => darkModeToggle.checked;
+
+  const applyMode = () => updateOrbMode(orb, getIsDarkMode());
+
+  darkModeToggle.addEventListener("change", applyMode);
 
   // Set default mode on load
-  updateOrbMode();
-  
+  applyMode();
+
   // Allow Enter key to shake the orb
-  document
-    .getElementById("question")
-    .addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        shakeOrb();
-      }
-    });
+  questionInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      shakeOrb(orb, answerEl, getIsDarkMode());
+    }
+  });
 });
