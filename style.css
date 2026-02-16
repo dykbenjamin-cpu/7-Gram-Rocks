@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Quicksand:wght@400;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,27 +7,68 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Quicksand', 'Trebuchet MS', sans-serif;
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: radial-gradient(circle at 20% 10%, #2c2e5e 0%, #16192f 40%, #0a0d1c 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
   color: #fff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 70%;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(102, 140, 255, 0.25), transparent 55%),
+    radial-gradient(circle at 70% 20%, rgba(202, 140, 255, 0.18), transparent 60%),
+    radial-gradient(circle at 50% 80%, rgba(90, 220, 255, 0.12), transparent 55%);
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  inset: auto -10% -20% -10%;
+  height: 60%;
+  background:
+    radial-gradient(circle at 25% 70%, rgba(255, 190, 120, 0.12), transparent 60%),
+    radial-gradient(circle at 80% 60%, rgba(120, 180, 255, 0.2), transparent 55%);
+  animation: drift 12s ease-in-out infinite alternate;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 34px;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  z-index: 1;
+}
+
+.question-form {
+  width: 100%;
+  max-width: 420px;
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+  z-index: 1;
 }
 
 #question {
-  width: 100%;
-  max-width: 400px;
   padding: 12px 16px;
   font-size: 16px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 25px;
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
-  margin-bottom: 30px;
   transition: all 0.3s ease;
   text-align: center;
 }
@@ -55,18 +98,46 @@ body {
   flex-direction: column;
   user-select: none;
   pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
 }
 
 /* Normal Mode Orb */
 .orb.normal {
-  background: radial-gradient(circle at 30% 30%, #3a6cff, #000428);
-  box-shadow: 0 0 40px rgba(58, 108, 255, 0.5), inset -30px -30px 60px rgba(0, 0, 0, 0.3);
+  background: radial-gradient(circle at 30% 25%, #8cb2ff 0%, #446bff 35%, #0c1b3a 70%, #050816 100%);
+  box-shadow:
+    0 0 35px rgba(98, 140, 255, 0.6),
+    0 0 80px rgba(120, 180, 255, 0.25),
+    inset -30px -40px 70px rgba(0, 0, 0, 0.4);
 }
 
 /* Dark Mode Orb */
 .orb.dark {
-  background: radial-gradient(circle at 30% 30%, #8b0000, #1a0000);
-  box-shadow: 0 0 40px rgba(139, 0, 0, 0.5), inset -30px -30px 60px rgba(0, 0, 0, 0.5);
+  background: radial-gradient(circle at 30% 25%, #ff6a6a 0%, #9b1b2d 40%, #2a060a 70%, #0a0203 100%);
+  box-shadow:
+    0 0 35px rgba(255, 90, 90, 0.5),
+    0 0 80px rgba(255, 80, 80, 0.2),
+    inset -30px -40px 70px rgba(0, 0, 0, 0.55);
+}
+
+.orb::before {
+  content: '';
+  position: absolute;
+  inset: 12% 16% 48% 20%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  border-radius: 50%;
+  transform: rotate(-12deg);
+  filter: blur(2px);
+  opacity: 0.65;
+}
+
+.orb::after {
+  content: '';
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 55%);
+  animation: glowPulse 6s ease-in-out infinite;
 }
 
 #answer {
@@ -81,6 +152,7 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  z-index: 2;
 }
 
 @keyframes fadeIn {
@@ -97,6 +169,26 @@ body {
   25% { transform: rotate(10deg) scale(1.02); }
   50% { transform: rotate(-10deg) scale(1.02); }
   75% { transform: rotate(5deg) scale(1.01); }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-18px);
+  }
 }
 
 .orb.shake {
@@ -124,6 +216,22 @@ button {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(58, 108, 255, 0.3);
+}
+
+.ask-button {
+  background: linear-gradient(135deg, #6ee7ff 0%, #7a6bff 50%, #ff7bd8 100%);
+  box-shadow: 0 6px 20px rgba(122, 107, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.ask-button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 10px 28px rgba(122, 107, 255, 0.45);
+}
+
+.ask-button:active {
+  transform: translateY(0);
 }
 
 button:hover {
