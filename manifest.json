@@ -1,7 +1,7 @@
 {
-  "name": "Why Is She Mad? - The Orb",
-  "short_name": "Why Is She Mad?",
-  "description": "A mystical orb that answers your relationship questions with ambiguous wisdom.",
+  "name": "Ask Me a Question - The Orb",
+  "short_name": "Ask Me",
+  "description": "A mystical orb that answers any question with ambiguous wisdom.",
   "start_url": "index.html",
   "scope": "./",
   "display": "standalone",
